@@ -2,8 +2,7 @@ from time import sleep
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 
-
-class Indeed_parser:
+class IndeedParser:
 
     def __init__(self, my_stack, location):
         self.driver = self.get_undetected_driver()
@@ -11,7 +10,7 @@ class Indeed_parser:
         self.location = location
 
     def get_undetected_driver(self):
-        path = 'Your path to chromedriver'
+        path = 'Path to chromedriver. Can be downloaded from https://chromedriver.chromium.org/downloads for your current version of google chrome'
         driver = uc.Chrome(driver_executable_path=path)
         return driver
 
@@ -54,22 +53,22 @@ class Indeed_parser:
         links = []
 
         for keyword in self.stack:
-            links.extend(self.parse_list(keyword))
+           links.extend(self.parse_list(keyword))
             sleep(5)
-        print(links)
+        
         for link in links:
-            job = self.parse_job_post(link)
-            print(job)
+            job = self.parse_job_post(link)            
             if self.check(job):
                 print('*' * 50)
                 print(link)
                 print(job['name'])
             sleep(5)
 
-
+            
 if __name__ == '__main__':
+  # Here you need to insert your tech skills
     my_stack = ['python', 'django']
+  # Here you need to insert your location
     location = 'USA'
-    parser = Indeed_parser(my_stack, location)
+    parser = IndeedParser(my_stack, location)
     parser.get_my_job()
-
